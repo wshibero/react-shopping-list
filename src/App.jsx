@@ -67,28 +67,31 @@ export default function App() {
           <div>
             <h2>Items in the shopping list</h2>
             <table>
-              <tr>
-                <theader>
+              <thead>
+                <tr>
                   <th>Item Name</th>
                   <th>Price</th>
                   <th>Quantity</th>
-                </theader>
-              </tr>
-              {shoppingList.map((item, index)=>{
-                return(
-                  <tr key={index}>
-                    <td>{item.item}</td>
-                    <td>{item.quantity}</td>
-                    <td>{item.price}</td>
-                    <td>{item.total}</td>
-                    <td>
-                      <button
-                        onClick={() => deleteElement(index)}
-                        >Delete</button>
-                    </td>
-                  </tr>
-                )
-              })}
+                  <th>total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shoppingList.map((item, index)=>{
+                  return(
+                    <tr key={index}>
+                      <td>{item.item}</td>
+                      <td>{item.quantity}</td>
+                      <td>{item.price}</td>
+                      <td>{item.total}</td>
+                      <td>
+                        <button
+                          onClick={() => deleteElement(index)}
+                          >Delete</button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
             </table>
             <p>The total amount you must spend is {total}</p>
           </div>
