@@ -36,7 +36,7 @@ export default function App() {
               placeholder='Item'
               value={item}
               onChange={(e)=>setItem(e.target.value)}
-              /><br/>
+              />
             <label>Quantity</label>
             <input 
               type="number"
@@ -45,7 +45,6 @@ export default function App() {
               value={quantity}
               onChange={(e)=>setQuantity(e.target.value)}
               />
-            <br/>
             <label>Price</label>
             <input
               type="number"
@@ -54,7 +53,6 @@ export default function App() {
               value={price}
               onChange={(e)=>setPrice(e.target.value)}
               />
-            <br/>
             <input type="submit" value="submit"/>
           </fieldset>
         </form>
@@ -73,6 +71,7 @@ export default function App() {
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>total</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -83,8 +82,9 @@ export default function App() {
                       <td>{item.quantity}</td>
                       <td>{item.price}</td>
                       <td>{item.total}</td>
-                      <td>
+                      <td className='deleterow'>
                         <button
+                          className="deletebtn"
                           onClick={() => deleteElement(index)}
                           >Delete</button>
                       </td>
