@@ -6,12 +6,19 @@ export default function App() {
   const [price, setPrice] = useState('')
   const [quantity, setQuantity] = useState('')
   const [shoppingList, setShoppingList] = useState([])
+  const [total, setTotal] = useState(0)
   const handleSubmit = (e)=>{
     e.preventDefault()
-    alert("submitted the data "+item+" "+price+" "+quantity)
     setShoppingList([...shoppingList, {item: item, price: price, quantity: quantity, total: (price*quantity)}])
-    console.log(shoppingList.length)
-    console.log(shoppingList.toString)
+    setTotal(total+(price*quantity))
+    setItem('')
+    setPrice('')
+    setQuantity('')
+  }
+  const deleteElement = () =>{
+    setShoppingList(
+      shoppingList.filter(x => x.id !== shoppingList.id)
+    )
   }
   return (
     <main>
@@ -73,10 +80,16 @@ export default function App() {
                     <td>{item.quantity}</td>
                     <td>{item.price}</td>
                     <td>{item.total}</td>
+                    <td>
+                      <button
+                        onClick={deleteElement}
+                        >Delete</button>
+                    </td>
                   </tr>
                 )
               })}
             </table>
+            <p>The total amount you must spend is {total}</p>
           </div>
         )
       }
