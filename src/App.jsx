@@ -1,9 +1,10 @@
 import './App.css'
+import {useState} from 'react'
 
 export default function App() {
-  // const {item, setItem} = useState('')
-  // const {price, setPrice} = useState('')
-  // const {quantity, setQuantity} = useState('')
+  const {item, setItem} = useState('')
+  const {price, setPrice} = useState('')
+  const {quantity, setQuantity} = useState('')
   let shoppingList = []
   const handleSubmit = (e)=>{
     e.preventDefault()
@@ -21,12 +22,17 @@ export default function App() {
             <label>Item</label>
             <input 
               type="text" 
-              placeholder='Item' /><br/>
+              placeholder='Item'
+              value={item}
+              onChange={(e)=>setItem(e.target.value)}
+              /><br/>
             <label>Quantity</label>
             <input 
               type="number"
               min="0"
               placeholder='quantity'
+              value={quantity}
+              onChange={(e)=>setQuantity(e.target.value)}
               />
             <br/>
             <label>Price</label>
@@ -34,6 +40,8 @@ export default function App() {
               type="number"
               min="0.0"
               placeholder='price'
+              value={price}
+              onChange={(e)=>setPrice(e.target.value)}
               />
             <br/>
             <input type="submit" value="submit"/>
