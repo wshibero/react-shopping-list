@@ -15,10 +15,11 @@ export default function App() {
     setPrice('')
     setQuantity('')
   }
-  const deleteElement = () =>{
-    setShoppingList(
-      shoppingList.filter(x => x.id !== shoppingList.id)
-    )
+  const deleteElement = (targetIndex) =>{
+    let item_total = shoppingList[targetIndex].total
+    setTotal(total - item_total)
+    const arr = shoppingList.filter((_, index) => index !== targetIndex)
+    setShoppingList(arr)
   }
   return (
     <main>
@@ -82,7 +83,7 @@ export default function App() {
                     <td>{item.total}</td>
                     <td>
                       <button
-                        onClick={deleteElement}
+                        onClick={() => deleteElement(index)}
                         >Delete</button>
                     </td>
                   </tr>
