@@ -2,13 +2,16 @@ import './App.css'
 import {useState} from 'react'
 
 export default function App() {
-  const {item, setItem} = useState('')
-  const {price, setPrice} = useState('')
-  const {quantity, setQuantity} = useState('')
-  let shoppingList = []
+  const [item, setItem] = useState('')
+  const [price, setPrice] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [shoppingList, setShoppingList] = useState([])
   const handleSubmit = (e)=>{
     e.preventDefault()
-    alert("submitted the data")
+    alert("submitted the data "+item+" "+price+" "+quantity)
+    setShoppingList([...shoppingList, {item: item, price: price, quantity: quantity, total: (price*quantity)}])
+    console.log(shoppingList.length)
+    console.log(shoppingList.toString)
   }
   return (
     <main>
@@ -48,10 +51,34 @@ export default function App() {
           </fieldset>
         </form>
       </div>
-      { shoppingList.length > 0 && 
-        <div>
-          <h2>Shopping List Items</h2>
-        </div>
+      { shoppingList.length === 0 ?(
+          <div>
+          <h2>There are no items in the shopping list</h2>
+        </div>)
+        :(
+          <div>
+            <h2>Items in the shopping list</h2>
+            <table>
+              <tr>
+                <theader>
+                  <th>Item Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </theader>
+              </tr>
+              {shoppingList.map((item, index)=>{
+                return(
+                  <tr key={index}>
+                    <td>{item.item}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price}</td>
+                    <td>{item.total}</td>
+                  </tr>
+                )
+              })}
+            </table>
+          </div>
+        )
       }
     </main>
   )
